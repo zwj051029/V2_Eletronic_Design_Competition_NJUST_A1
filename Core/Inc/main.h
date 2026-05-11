@@ -59,6 +59,10 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define led_Pin GPIO_PIN_13
 #define led_GPIO_Port GPIOC
+#define k230_tx_Pin GPIO_PIN_9
+#define k230_tx_GPIO_Port GPIOA
+#define k230_rx_Pin GPIO_PIN_10
+#define k230_rx_GPIO_Port GPIOA
 #define key_Pin GPIO_PIN_15
 #define key_GPIO_Port GPIOA
 #define key_EXTI_IRQn EXTI15_10_IRQn

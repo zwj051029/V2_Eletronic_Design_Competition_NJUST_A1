@@ -1,6 +1,7 @@
 #ifndef BSP_UART_H
 #define BSP_UART_H
 
+#include "usart.h"
 #include <stdbool.h>
 #include <stdint.h>
 
