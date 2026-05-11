@@ -339,7 +339,7 @@
               <MiscControls>-frtti</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx,ARM_MATH_CM4,CC_ARM</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Middlewares/ST/ARM/DSP/Inc;../FrameComponets/Bsps/gpio;../FrameComponets/Bsps/config;../FrameComponets/Sys/System;../FrameComponets/Apps/MainFrame</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Middlewares/ST/ARM/DSP/Inc;../FrameComponets/Bsps/gpio;../FrameComponets/Bsps/config;../FrameComponets/Sys/System;../FrameComponets/Apps/MainFrame;..\FrameComponets\Algorithm\filter;..\FrameComponets\Algorithm\linear_math;..\FrameComponets\Algorithm\pid;..\FrameComponets\Algorithm\std_math;..\FrameComponets\Bsps\dwt</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -589,6 +589,11 @@
           <GroupName>Bsps</GroupName>
           <Files>
             <File>
+              <FileName>bsp_dwt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FrameComponets\Bsps\dwt\bsp_dwt.c</FilePath>
+            </File>
+            <File>
               <FileName>bsp_gpio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\FrameComponets\Bsps\gpio\bsp_gpio.c</FilePath>
@@ -602,14 +607,14 @@
           <GroupName>Sys</GroupName>
           <Files>
             <File>
-              <FileName>RtosCpp.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\FrameComponets\Sys\System\RtosCpp.cpp</FilePath>
-            </File>
-            <File>
               <FileName>System.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\FrameComponets\Sys\System\System.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>RtosCpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\FrameComponets\Sys\System\RtosCpp.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -625,6 +630,28 @@
         </Group>
         <Group>
           <GroupName>Algorithm</GroupName>
+          <Files>
+            <File>
+              <FileName>pid.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\FrameComponets\Algorithm\pid\pid.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>filter.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\FrameComponets\Algorithm\filter\filter.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>std_math.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\FrameComponets\Algorithm\std_math\std_math.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>linear_math.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\FrameComponets\Algorithm\linear_math\linear_math.cpp</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
