@@ -1,0 +1,42 @@
+---
+Language:        Cpp
+BasedOnStyle:    LLVM
+IndentWidth:     4
+TabWidth:        4
+UseTab:          Never
+ColumnLimit:     120
+
+# 1. Namespace 内函数强制缩进 4 空格
+NamespaceIndentation: All
+
+# 2. Class 访问权限（public/private）不缩进，和类对齐
+AccessModifierOffset: -4
+
+# 3. 模板声明单独一行，和函数定义换行（解决你现在的问题）
+BreakTemplateDeclarations: Yes
+
+# 4. 花括号风格：{ 不换行，} 单独成行
+BreakBeforeBraces: Attach
+BraceWrapping:
+  AfterNamespace: false
+  AfterFunction:  false
+  AfterControlStatement: false
+  IndentBraces:  false
+
+# 5. 禁止代码挤在一行
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+AllowShortBlocksOnASingleLine: Never
+
+# 空格与对齐
+SpaceBeforeParens: ControlStatements
+SpaceAfterCStyleCast: true
+PointerAlignment:    Right
+AlignAfterOpenBracket: Align
+AlignOperands: true
+AlignTrailingComments: true
+
+# 不合并花括号
+CompactNamespaces: false
+MaxEmptyLinesToKeep: 1

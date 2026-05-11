@@ -1,0 +1,200 @@
+# ==============================================
+# 【核心规则】编译输出文件（所有编译器通用）
+# ==============================================
+*.o
+*.d
+*.obj
+*.elf
+*.hex
+*.bin
+*.axf
+*.map
+*.lst
+*.crf
+*.lnp
+*.dep
+*.tmp
+*.log
+*.lock
+*.sct
+*.tra
+*.iex
+*.out
+*.a
+*.lib
+*.so
+*.sym
+*.dis
+*.asm
+
+# ==============================================
+# 【Keil MDK 专用】工程文件与目录
+# 只保留 uvprojx 主工程文件，其他全部忽略
+# ==============================================
+MDK-ARM/Listings/
+MDK-ARM/Objects/
+MDK-ARM/RTE/
+MDK-ARM/DebugConfig/
+MDK-ARM/Flash/
+MDK-ARM/Release/
+MDK-ARM/Debug/
+
+# Keil 个人配置文件（每个开发者不同，绝对不能提交）
+MDK-ARM/*.uvguix.*
+MDK-ARM/*.uvoptx
+MDK-ARM/*.uvguix
+MDK-ARM/*.uvopt
+
+# Keil 调试与仿真文件
+MDK-ARM/*.scvd
+MDK-ARM/*.jlink
+MDK-ARM/*.stlink
+MDK-ARM/*.dap
+MDK-ARM/*.ini
+MDK-ARM/*.dbgconf
+
+# Keil VSCode 插件生成的本地配置
+MDK-ARM/.vscode/
+MDK-ARM/*.stignore
+MDK-ARM/.clang-format
+
+# ==============================================
+# 【STM32CubeMX 专用】自动生成文件
+# 重点解决：自动复制整个系列所有芯片启动文件的问题
+# ==============================================
+Backup/
+*.ioc.bak
+*.mxproject
+*.ioc~
+*.ioc.bak*
+*.mxproject.bak
+
+# 忽略所有STM32F4系列的启动文件，只保留你实际使用的那一个
+Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_*.s
+Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_*.s
+Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/iar/startup_*.s
+
+# ⚠️ 重要：取消下面一行的注释，并修改为你实际使用的芯片型号
+# !Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.s
+
+# 可选：忽略CubeMX自动生成的系统文件（如果你不修改它们）
+# Core/Src/system_stm32f4xx.c
+# Core/Inc/stm32f4xx.h
+
+# ==============================================
+# 【编译日志与报告】
+# ==============================================
+*.htm
+*.html
+*.build_log.htm
+*.build_log.txt
+*.error_log.htm
+*.output.txt
+*.errors.txt
+*.warnings.txt
+
+# ==============================================
+# 【VS Code 本地配置】
+# 根据团队约定选择：全部忽略 或 选择性共享
+# ==============================================
+# 方案A：全部忽略（推荐个人项目）
+.vscode/
+
+# 方案B：忽略大部分，只共享团队统一配置（推荐团队项目）
+# .vscode/*
+# !.vscode/extensions.json   # 推荐的扩展列表
+# !.vscode/settings.json     # 统一的代码格式化、编码设置
+# !.vscode/tasks.json        # 统一的编译任务
+# !.vscode/launch.json       # 统一的调试配置
+# !.vscode/c_cpp_properties.json # 统一的C/C++配置
+
+# ==============================================
+# 【其他 IDE 与编辑器】
+# ==============================================
+# CLion / JetBrains 系列
+.idea/
+cmake-build-*/
+*.iml
+*.ipr
+*.iws
+
+# IAR Embedded Workbench
+*.ewd
+*.ewp
+*.eww
+*.ewt
+*.pbd
+*.dep
+Debug/
+Release/
+Exe/
+Obj/
+List/
+
+# Eclipse / STM32CubeIDE
+.project
+.cproject
+.settings/
+.metadata/
+RemoteSystemsTempFiles/
+Debug/
+Release/
+
+# ==============================================
+# 【通用系统与编辑器垃圾文件】
+# ==============================================
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+*.lnk
+Desktop.ini
+
+# macOS
+.DS_Store
+._*
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# 通用备份文件
+*.bak
+*.bak.*
+*.old
+*.orig
+*.tmp
+*.temp
+*.swp
+*.swo
+*.swn
+*.~*
+*#
+
+# ==============================================
+# 【Git 与版本控制工具】
+# ==============================================
+*.patch
+*.diff
+*.rej
+*.orig
+*.gitignore.bak
+
+# ==============================================
+# 【文档与其他临时文件】
+# ==============================================
+*.pdf.tmp
+*.docx.tmp
+*.xlsx.tmp
+*.pptx.tmp
+*.zip
+*.rar
+*.7z
+*.tar.gz
+*.tar.bz2
