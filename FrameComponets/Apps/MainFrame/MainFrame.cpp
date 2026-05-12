@@ -21,6 +21,8 @@
 //          佛祖保佑          永不宕机          永无BUG            //
 ////////////////////////////////////////////////////////////////////
 #include "MainFrame.hpp"
+#include "GetCoord.hpp"
+#include "System.hpp"
 #include "std_cpp.h"
 #include "stm32f4xx_hal.h"
 
@@ -29,4 +31,5 @@
  * @warning 严禁阻塞
  */
 void MainFrameCpp() {
+    System.RegistApp(get_coord_app); // 注册 GetCoord 应用
 }
