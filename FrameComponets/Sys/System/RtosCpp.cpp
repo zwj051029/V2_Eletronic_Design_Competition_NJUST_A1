@@ -1,6 +1,7 @@
 #include "RtosCpp.hpp"
 #include "FreeRTOS.h"
 #include "MainFrame.hpp"
+#include "StateCore.hpp"
 #include "System.hpp"
 #include "cmsis_os.h"
 #include "std_cpp.h"
@@ -13,7 +14,8 @@
  * 主要是因为怕线程爆栈，主函数的栈深基本上摸不到底的
  */
 void MainInitCpp() {
-    MainFrameCpp();
+    System.Init();  // 初始化机器人系统
+    MainFrameCpp(); // 初始化主框架
 }
 
 /******      RTOS任务相关的函数      ******/
@@ -34,8 +36,12 @@ void ControlCpp() {
  */
 void StateCoreCpp() {
     uint32_t AppTick = xTaskGetTickCount();
+    StateCore &core = StateCore::GetInstance();
 
     while (1) {
+        // 更新状态核心
+        core.Run();
+
         /***     最大循环频率：250Hz     ***/
         osDelayUntil(&AppTick, 4);
     }
@@ -49,6 +55,9 @@ void ApplicationCpp() {
     uint32_t AppTick = xTaskGetTickCount();
 
     while (1) {
+        // 更新所有应用
+        System._Update_Applications();
+
         /***     最大循环频率：200Hz     ***/
         osDelayUntil(&AppTick, 5);
     }
@@ -62,6 +71,9 @@ void RobotSystemCpp() {
     uint32_t AppTick = xTaskGetTickCount();
 
     while (1) {
+        // 更新系统状态
+        System.Run();
+
         /***    最大循环频率：200Hz     ***/
         osDelayUntil(&AppTick, 5);
     }
