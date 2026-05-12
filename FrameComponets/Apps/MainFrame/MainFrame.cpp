@@ -29,6 +29,4 @@
  * @warning 严禁阻塞
  */
 void MainFrameCpp() {
-    while (1) {
-    }
 }
