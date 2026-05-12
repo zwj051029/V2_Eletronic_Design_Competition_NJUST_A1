@@ -59,6 +59,10 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define led_Pin GPIO_PIN_13
 #define led_GPIO_Port GPIOC
+#define bluetooth_tx_Pin GPIO_PIN_2
+#define bluetooth_tx_GPIO_Port GPIOA
+#define bluetooth_rx_Pin GPIO_PIN_3
+#define bluetooth_rx_GPIO_Port GPIOA
 #define k230_tx_Pin GPIO_PIN_9
 #define k230_tx_GPIO_Port GPIOA
 #define k230_rx_Pin GPIO_PIN_10
