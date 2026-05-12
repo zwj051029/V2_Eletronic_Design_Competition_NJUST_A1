@@ -108,7 +108,7 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of ApplicationTask */
-  osThreadDef(ApplicationTask, Application, osPriorityBelowNormal, 0, 512);
+  osThreadDef(ApplicationTask, Application, osPriorityNormal, 0, 2048);
   ApplicationTaskHandle = osThreadCreate(osThread(ApplicationTask), NULL);
 
   /* definition and creation of ControlTask */
@@ -116,11 +116,11 @@ void MX_FREERTOS_Init(void) {
   ControlTaskHandle = osThreadCreate(osThread(ControlTask), NULL);
 
   /* definition and creation of RobotSystemTask */
-  osThreadDef(RobotSystemTask, RobotSystem, osPriorityNormal, 0, 512);
+  osThreadDef(RobotSystemTask, RobotSystem, osPriorityLow, 0, 512);
   RobotSystemTaskHandle = osThreadCreate(osThread(RobotSystemTask), NULL);
 
   /* definition and creation of StateCoreTask */
-  osThreadDef(StateCoreTask, StateCore, osPriorityNormal, 0, 1024);
+  osThreadDef(StateCoreTask, StateCore, osPriorityAboveNormal, 0, 1024);
   StateCoreTaskHandle = osThreadCreate(osThread(StateCoreTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
