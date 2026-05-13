@@ -10,7 +10,7 @@
  */
 class Bluetooth {
 public:
-    Bluetooth() = default;
+    Bluetooth() noexcept;
 
     /// @brief 初始化 UART，绑定到指定 HAL 句柄，设置 DMA 收发和行缓冲
     void Init(UART_HandleTypeDef *huart);

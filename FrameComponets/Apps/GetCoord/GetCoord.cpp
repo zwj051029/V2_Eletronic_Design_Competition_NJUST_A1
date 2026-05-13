@@ -7,7 +7,7 @@ GetCoord &get_coord_app = GetCoord::GetInstance();
 
 void GetCoord::Start() {
     // 初始化蓝牙，传入 CubeMX 生成的 huart2
-    bt_.Init(&huart1); // 假设 huart2 在 main.h 或 usart.h 中声明
+    bt_.Init(&huart2);
     point_count_ = 0;
     path_ready_ = false;
 }
