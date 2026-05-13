@@ -15,9 +15,9 @@ void VisionReceiver::Init(UART_HandleTypeDef *huart) {
 
 void VisionReceiver::Update() {
     float now = BspDwt_GetTimeline_Sec();
-    // if ((now - last_update_time_) > 0.2f) { // 200ms 超时
-    //     valid_ = false;
-    // }
+    if ((now - last_update_time_) > 0.2f) { // 200ms 超时
+        valid_ = false;
+    }
 }
 
 // DMA 空闲中断回调

@@ -52,7 +52,7 @@ private:
 
     volatile float offset_ = 0.0f;
     volatile float angle_ = 0.0f;
-    volatile bool valid_ = true;
+    volatile bool valid_ = false;
     volatile float last_update_time_ = 0.0f; // 最后有效帧的系统时间 (秒)
 
     // 帧解析状态
