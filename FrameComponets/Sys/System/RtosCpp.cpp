@@ -27,10 +27,11 @@ void MainInitCpp() {
  */
 void ControlCpp() {
     while (1) {
-        m0_commander.Send(); // 发送当前速度指令给 M0
+        // 发送当前速度指令到 M0
+        m0_commander.Send();
 
         /***     最大循环频率：1000Hz     ***/
-        osDelay(1); // FreeRTOS的极限，1ms喂狗
+        osDelay(100); // FreeRTOS的极限，1ms喂狗
     }
 }
 
