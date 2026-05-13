@@ -6,10 +6,11 @@
 GetCoord &get_coord_app = GetCoord::GetInstance();
 
 void GetCoord::Start() {
-    // 初始化蓝牙，传入 CubeMX 生成的 huart2
     bt_.Init(&huart2);
     point_count_ = 0;
     path_ready_ = false;
+    // 预设起点 (0,0)
+    points_[point_count_++] = Vec2(0.0f, 0.0f);
 }
 
 void GetCoord::Update() {
@@ -20,8 +21,36 @@ void GetCoord::Update() {
     // 如果收到 START 指令，结束接收并置标志
     if (strncmp(line, "START", 5) == 0) {
         path_ready_ = true;
-        // 后续可在此调用路径规划
-        // PathPlanner::GetInstance().Compute(points_, point_count_);
+        // 调用路径规划
+        PathPlanner &pl = PathPlanner::GetInstance();
+        if (pl.Compute(points_, point_count_)) {
+            // 通过蓝牙回显全路径和转向表
+            char msg[64];
+            const Vec2 *path = pl.GetFullPath();
+            int len = pl.GetFullPathLength();
+            bt_.Send("===== Full Path =====\r\n");
+            for (int i = 0; i < len; i++) {
+                snprintf(msg, sizeof(msg), "Node%d: (%d,%d)\r\n", i, (int) path[i].x, (int) path[i].y);
+                bt_.Send(msg);
+            }
+            bt_.Send("===== Turn Table =====\r\n");
+            for (int i = 0; i < len - 1; i++) {
+                TurnDirection act = pl.GetAction(i);
+                const char *act_str = "STRAIGHT";
+                if (act == TurnDirection::LEFT)
+                    act_str = "LEFT";
+                if (act == TurnDirection::RIGHT)
+                    act_str = "RIGHT";
+                if (act == TurnDirection::ARRIVED)
+                    act_str = "ARRIVED";
+                snprintf(msg, sizeof(msg), "At Node%d(%d,%d): %s\r\n", i + 1, (int) path[i + 1].x, (int) path[i + 1].y,
+                         act_str);
+                bt_.Send(msg);
+            }
+        } else {
+            bt_.Send("Path computation failed!\r\n");
+        }
+        System.system_started = true; // 启动系统
         return;
     }
 
