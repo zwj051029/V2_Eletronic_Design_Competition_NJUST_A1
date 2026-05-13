@@ -2,6 +2,7 @@
 #include "FreeRTOS.h"
 #include "M0Commander.hpp"
 #include "MainFrame.hpp"
+#include "SpeedMixer.hpp"
 #include "StateCore.hpp"
 #include "System.hpp"
 #include "cmsis_os.h"
@@ -15,8 +16,8 @@
  * 主要是因为怕线程爆栈，主函数的栈深基本上摸不到底的
  */
 void MainInitCpp() {
-    System.Init();                              // 初始化机器人系统
-    MainFrameCpp();                             // 初始化主框架
+    System.Init();  // 初始化机器人系统
+    MainFrameCpp(); // 初始化主框架
 }
 
 /******      RTOS任务相关的函数      ******/
@@ -26,7 +27,10 @@ void MainInitCpp() {
  */
 void ControlCpp() {
     while (1) {
-        // 发送当前速度指令到 M0
+        float left_speed = speed_mixer.GetFinalLeftSpeed();
+        float right_speed = speed_mixer.GetFinalRightSpeed();
+
+        m0_commander.SetSpeed(left_speed, right_speed);
         m0_commander.Send();
 
         /***     最大循环频率：1000Hz     ***/

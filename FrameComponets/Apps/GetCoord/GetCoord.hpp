@@ -7,6 +7,8 @@
 #include "std_math.hpp"
 
 class GetCoord : public Application {
+    friend class MainStateMachine;
+
     SINGLETON(GetCoord) : Application("GetCoord") {
         prescaler = 5; // 40 Hz
     };
@@ -39,4 +41,5 @@ private:
 };
 
 extern GetCoord &get_coord_app;
+
 #endif

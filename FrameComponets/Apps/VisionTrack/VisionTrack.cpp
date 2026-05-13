@@ -1,21 +1,24 @@
 #include "VisionTrack.hpp"
-#include "M0Commander.hpp"
+#include "SpeedMixer.hpp"
 #include "VisionReceiver.hpp"
 #include "std_math.hpp"
 
 VisionTrack &vision_track = VisionTrack::GetInstance();
 
 void VisionTrack::Start() {
+    VisionReceiver::GetInstance().Init(&huart1);
+    speed_mixer.SetVisionTrackSpeed(base_speed_, 0.0f);
+
     lost_cnt_ = 0;
     normal_ = true;
 }
 
 void VisionTrack::Update() {
-    // 1. 先更新 VisionReceiver 的看门狗
+    // 更新视觉接收器看门狗
     VisionReceiver::GetInstance().Update();
 
     if (!System.system_started) {
-        M0Commander::GetInstance().SetSpeed(0.0f, 0.0f);
+        speed_mixer.SetVisionTrackSpeed(0.0f, 0.0f);
         lost_cnt_ = 0;
         normal_ = true;
         return;
@@ -27,7 +30,7 @@ void VisionTrack::Update() {
         lost_cnt_++;
         if (lost_cnt_ > 5) {
             // 丢线保护：低速直行
-            M0Commander::GetInstance().SetSpeed(base_speed_ * 0.3f, base_speed_ * 0.3f);
+            speed_mixer.SetVisionTrackSpeed(base_speed_ * 0.3f, 0.0f);
             normal_ = false;
         }
         return;
@@ -42,11 +45,6 @@ void VisionTrack::Update() {
     float turn = kp_ * offset + kd_ * angle;
     turn = StdMath::fclamp(turn, max_turn_);
 
-    float left = base_speed_ - turn;
-    float right = base_speed_ + turn;
-
-    left = StdMath::fclamp(left, 0.0f, 300.0f);
-    right = StdMath::fclamp(right, 0.0f, 300.0f);
-
-    M0Commander::GetInstance().SetSpeed(left, right);
+    // 通过 SpeedMixer 设置巡线速度（含差速）
+    speed_mixer.SetVisionTrackSpeed(base_speed_, turn);
 }

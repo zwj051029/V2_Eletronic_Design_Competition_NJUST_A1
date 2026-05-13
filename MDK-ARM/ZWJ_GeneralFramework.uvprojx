@@ -339,7 +339,7 @@
               <MiscControls>-frtti</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx,ARM_MATH_CM4,CC_ARM</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Middlewares/ST/ARM/DSP/Inc;../FrameComponets/Bsps/gpio;../FrameComponets/Bsps/config;../FrameComponets/Apps/MainFrame;../FrameComponets/Algorithm/filter;../FrameComponets/Algorithm/linear_math;../FrameComponets/Algorithm/pid;../FrameComponets/Algorithm/std_math;../FrameComponets/Bsps/dwt;../FrameComponets/Bsps/uart;../FrameComponets/Sys/System;../FrameComponets/Sys/StateCore;../FrameComponets/Mods/key;../FrameComponets/Mods/led;..\FrameComponets\Apps\GetCoord;..\FrameComponets\Mods\BlueTooth;..\FrameComponets\Apps\PathPlanner;..\FrameComponets\Mods\M0Commander;..\FrameComponets\Mods\VisionReceiver;..\FrameComponets\Apps\VisionTrack</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Middlewares/ST/ARM/DSP/Inc;../FrameComponets/Bsps/gpio;../FrameComponets/Bsps/config;../FrameComponets/Apps/MainFrame;../FrameComponets/Algorithm/filter;../FrameComponets/Algorithm/linear_math;../FrameComponets/Algorithm/pid;../FrameComponets/Algorithm/std_math;../FrameComponets/Bsps/dwt;../FrameComponets/Bsps/uart;../FrameComponets/Sys/System;../FrameComponets/Sys/StateCore;../FrameComponets/Mods/key;../FrameComponets/Mods/led;..\FrameComponets\Apps\GetCoord;..\FrameComponets\Mods\BlueTooth;..\FrameComponets\Apps\PathPlanner;..\FrameComponets\Mods\M0Commander;..\FrameComponets\Mods\VisionReceiver;..\FrameComponets\Apps\VisionTrack;..\FrameComponets\Apps\MainStateMachine;..\FrameComponets\Apps\SpeedMixer</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -679,9 +679,19 @@
               <FilePath>..\FrameComponets\Apps\VisionTrack\VisionTrack.cpp</FilePath>
             </File>
             <File>
+              <FileName>SpeedMixer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\FrameComponets\Apps\SpeedMixer\SpeedMixer.cpp</FilePath>
+            </File>
+            <File>
               <FileName>PathPlanner.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\FrameComponets\Apps\PathPlanner\PathPlanner.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MainStateMachine.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\FrameComponets\Apps\MainStateMachine\MainStateMachine.cpp</FilePath>
             </File>
           </Files>
         </Group>

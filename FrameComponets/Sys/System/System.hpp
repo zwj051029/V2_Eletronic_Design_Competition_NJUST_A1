@@ -26,7 +26,12 @@ private:
 
 public:
     uint8_t prescaler = 1;
+    bool is_enabled = false;
     bool CntFull();
+
+    void SetEnable(bool enable) {
+        is_enabled = enable;
+    }
 
     virtual bool WatchPoint() {
         return true;
@@ -84,20 +89,6 @@ public:
     void Init(bool self_check = true);
     void Run();
     bool RegistApp(Application &app_inst);
-
-    template <typename T>
-    T *FindApp(const char *name) {
-        for (int i = 0; i < app_count; i++) {
-            if (app_list[i] != nullptr) {
-                if (typeid(app_list[i]->GetType()) == typeid(T)) {
-                    if (strncmp(app_list[i]->name, name, 24) == 0) {
-                        return dynamic_cast<T *>(app_list[i]);
-                    }
-                }
-            }
-        }
-        return nullptr;
-    }
 
 private:
     void _UpdateLed();
