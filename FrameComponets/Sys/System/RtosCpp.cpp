@@ -1,5 +1,6 @@
 #include "RtosCpp.hpp"
 #include "FreeRTOS.h"
+#include "M0Commander.hpp"
 #include "MainFrame.hpp"
 #include "StateCore.hpp"
 #include "System.hpp"
@@ -14,8 +15,9 @@
  * 主要是因为怕线程爆栈，主函数的栈深基本上摸不到底的
  */
 void MainInitCpp() {
-    System.Init();  // 初始化机器人系统
-    MainFrameCpp(); // 初始化主框架
+    System.Init();              // 初始化机器人系统
+    m0_commander.Init(&huart3); // 初始化 M0Commander，绑定 UART3 句柄
+    MainFrameCpp();             // 初始化主框架
 }
 
 /******      RTOS任务相关的函数      ******/
@@ -25,6 +27,8 @@ void MainInitCpp() {
  */
 void ControlCpp() {
     while (1) {
+        m0_commander.Send(); // 发送当前速度指令给 M0
+
         /***     最大循环频率：1000Hz     ***/
         osDelay(1); // FreeRTOS的极限，1ms喂狗
     }
